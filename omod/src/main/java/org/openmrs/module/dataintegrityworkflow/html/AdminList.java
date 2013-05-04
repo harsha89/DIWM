@@ -11,17 +11,16 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.basicmodule.extension.html;
+package org.openmrs.module.dataintegrityworkflow.html;
+
+import org.openmrs.module.web.extension.AdministrationSectionExt;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openmrs.module.Extension;
-import org.openmrs.module.web.extension.AdministrationSectionExt;
-
 /**
  * This class defines the links that will appear on the administration page under the
- * "basicmodule.title" heading. This extension is enabled by defining (uncommenting) it in the
+ * "dataintegrityworkflow.title" heading. This extension is enabled by defining (uncommenting) it in the
  * /metadata/config.xml file.
  */
 public class AdminList extends AdministrationSectionExt {
@@ -29,15 +28,15 @@ public class AdminList extends AdministrationSectionExt {
 	/**
 	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getMediaType()
 	 */
-	public Extension.MEDIA_TYPE getMediaType() {
-		return Extension.MEDIA_TYPE.html;
+	public MEDIA_TYPE getMediaType() {
+		return MEDIA_TYPE.html;
 	}
 	
 	/**
 	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getTitle()
 	 */
 	public String getTitle() {
-		return "basicmodule.title";
+		return "dataintegrityworkflow.title";
 	}
 	
 	/**
@@ -47,7 +46,7 @@ public class AdminList extends AdministrationSectionExt {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("module/basicmodule/basicmoduleLink.form", "basicmodule.replace.this.link.name");
+		map.put("module/dataintegrityworkflow/basicmoduleLink.form", "dataintegrityworkflow.replace.this.link.name");
 		
 		return map;
 	}

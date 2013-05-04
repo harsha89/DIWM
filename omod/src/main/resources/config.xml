@@ -7,9 +7,9 @@
     <name>@MODULE_NAME@</name>
     <version>@MODULE_VERSION@</version>
     <package>@MODULE_PACKAGE@</package>
-    <author>Nimantha Baranasuriya</author>
+    <author>Harsha Kumara</author>
     <description>An OpenMRS Module to manage data integrity checks</description>
-    <activator>@MODULE_PACKAGE@.DataIntegrityModuleActivator</activator>
+    <activator>@MODULE_PACKAGE@.DataIntegrityWorkflowModuleActivator</activator>
     <updateURL/>
     <require_version/>
     <!-- /DataIntegrity Module Properties -->

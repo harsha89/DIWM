@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.basicmodule.web.controller;
+package org.openmrs.module.dataintegrityworkflow.web.controller;
 
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * This class configured as controller using annotation and mapped with the URL of 'module/basicmodule/basicmoduleLink.form'.
+ * This class configured as controller using annotation and mapped with the URL of 'module/dataintegrityworkflow/basicmoduleLink.form'.
  */
 @Controller
 @RequestMapping(value = "module/basicmodule/basicmoduleLink.form")
@@ -39,7 +39,7 @@ public class BasicModuleFormController{
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/** Success form view name */
-	private final String SUCCESS_FORM_VIEW = "/module/basicmodule/basicmoduleForm";
+	private final String SUCCESS_FORM_VIEW = "/module/dataintegrityworkflow/basicmoduleForm";
 	
 	/**
 	 * Initially called after the formBackingObject method to get the landing form name  
