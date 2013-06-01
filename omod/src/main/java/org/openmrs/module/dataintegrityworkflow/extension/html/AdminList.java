@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.dataintegrityworkflow.html;
+package org.openmrs.module.dataintegrityworkflow.extension.html;
 
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 

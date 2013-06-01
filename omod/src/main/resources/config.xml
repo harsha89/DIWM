@@ -10,9 +10,16 @@
     <author>Harsha Kumara</author>
     <description>An OpenMRS Module to manage data integrity checks</description>
     <activator>@MODULE_PACKAGE@.DataIntegrityWorkflowModuleActivator</activator>
-    <updateURL/>
-    <require_version/>
-    <!-- /DataIntegrity Module Properties -->
+    <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf
+    </updateURL>
+
+    <!-- /Data Integrity Workflow  Properties -->
+
+    <require_version>1.6</require_version>
+
+    <require_modules>
+        <require_module version="2.0">org.openmrs.module.dataintegrity</require_module>
+    </require_modules>
 
     <!-- Extensions -->
 	<extension>
@@ -29,12 +36,16 @@
 	 /AOP -->
 	
 	
-	<!-- Required Privileges 
+	<!-- Required Privileges -->
+    <privilege>
+        <name>Manage Assignments</name>
+        <description>Allows manager to assign records to users</description>
+    </privilege>
 	<privilege>
-		<name>Form Entry</name>
-		<description>Allows user to access Form Entry pages/functions</description>
+		<name>View Assignments</name>
+		<description>Allows user to access assigned records</description>
 	</privilege>
-	 /Required Privileges -->
+	 <!--Required Privileges -->
 
 
 	<!-- Required Global Properties 
@@ -92,6 +103,12 @@
 		<file>messages_es.properties</file>
 	</messages>
 	<!-- /Internationalization -->
-	
+
+    <!-- Hibernate Mapping -->
+    <mappingFiles>
+        ${omodHbmConfig}
+    </mappingFiles>
+    <!-- /Hibernate Mapping -->
+
 </module>
 
