@@ -18,8 +18,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 
-import java.util.Map;
-
 /**
  * @author: harsha
  */

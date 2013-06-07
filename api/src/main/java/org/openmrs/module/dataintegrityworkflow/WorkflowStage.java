@@ -13,9 +13,57 @@
  */
 package org.openmrs.module.dataintegrityworkflow;
 
+import org.openmrs.BaseOpenmrsData;
+
+import java.io.Serializable;
+
 /**
  * @author: harsha
  */
-public class WorkflowStage {
+/**
+ * Pojo file for the workflow stages relation in the Data Integrity Workflow Module
+ */
+public class WorkflowStage extends BaseOpenmrsData implements Serializable {
+    private Integer workflowStageId;
+    private String  status;
 
+    /*
+     *  Default constructor for the class
+     */
+    public WorkflowStage() {}
+
+    /*
+     * Contructor with status as arguement
+     */
+    public WorkflowStage(String status) {
+        this.status = status;
+    }
+
+    public Integer getfeedbackStatusId() {
+        return this.workflowStageId;
+    }
+
+    public void setfeedbackStatusId(Integer feedbackStatusId) {
+        this.workflowStageId = feedbackStatusId;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        if (status.length() > 50) {
+            this.status = status.substring(0, 50);
+        } else {
+            this.status = status;
+        }
+    }
+
+    public Integer getId() {
+        return this.workflowStageId;
+    }
+
+    public void setId(Integer feedbackStatusId) {
+        this.workflowStageId = feedbackStatusId;
+    }
 }

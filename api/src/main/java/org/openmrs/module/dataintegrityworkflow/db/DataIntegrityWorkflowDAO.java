@@ -33,11 +33,6 @@ public interface DataIntegrityWorkflowDAO {
      */
     public SessionFactory getSessionFactory();
 
-    /**
-     * save an integrity check to the database and return the persisted instance
-     *
-     * @param integrityCheck the integrity check to be saved
-     * @return persisted instance of the integrity check
-     * @throws org.openmrs.api.db.DAOException
-     */
+
+
 }

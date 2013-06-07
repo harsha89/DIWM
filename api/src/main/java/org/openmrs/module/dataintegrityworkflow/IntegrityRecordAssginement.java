@@ -16,5 +16,7 @@ package org.openmrs.module.dataintegrityworkflow;
 /**
  * @author: harsha
  */
-public class IntegrityRecordAssgineeProperties {
+public class IntegrityRecordAssginement {
+    private String recordAssignmentId;
+
 }
