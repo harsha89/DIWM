@@ -39,12 +39,12 @@ public class WorkflowStage extends BaseOpenmrsData implements Serializable {
         this.status = status;
     }
 
-    public Integer getfeedbackStatusId() {
+    public Integer getworkflowStageId() {
         return this.workflowStageId;
     }
 
-    public void setfeedbackStatusId(Integer feedbackStatusId) {
-        this.workflowStageId = feedbackStatusId;
+    public void setworkflowStageId(Integer workflowStageId) {
+        this.workflowStageId = workflowStageId;
     }
 
     public String getStatus() {
@@ -63,7 +63,7 @@ public class WorkflowStage extends BaseOpenmrsData implements Serializable {
         return this.workflowStageId;
     }
 
-    public void setId(Integer feedbackStatusId) {
-        this.workflowStageId = feedbackStatusId;
+    public void setId(Integer workflowStageId) {
+        this.workflowStageId = workflowStageId;
     }
 }

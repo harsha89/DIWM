@@ -15,8 +15,13 @@ package org.openmrs.module.dataintegrityworkflow.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.dataintegrity.DataIntegrityService;
+import org.openmrs.module.dataintegrity.IntegrityCheck;
 import org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
+
+import java.util.List;
 
 /**
  * @author: harsha
@@ -27,13 +32,12 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
      * dao for use with this service implementation
      */
     private DataIntegrityWorkflowDAO dao;
-
     protected final Log log = LogFactory.getLog(getClass());
 
     /**
      * @see org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService#setDataIntegrityDAO(org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO)
      */
-    public void setDataIntegrityDAO(DataIntegrityWorkflowDAO dao) {
+    public void setDataIntegrityWorkflowDAO(DataIntegrityWorkflowDAO dao) {
         this.dao = dao;
     }
 
@@ -42,5 +46,10 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
      */
     public DataIntegrityWorkflowDAO getDataIntegrityDAO() {
         return this.dao;
+    }
+
+    public List<IntegrityCheck> getAllIntegrityChecks()
+    {
+       return Context.getService(DataIntegrityService.class).getAllIntegrityChecks();
     }
 }

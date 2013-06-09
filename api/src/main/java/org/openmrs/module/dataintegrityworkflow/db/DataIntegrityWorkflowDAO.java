@@ -14,6 +14,11 @@
 package org.openmrs.module.dataintegrityworkflow.db;
 
 import org.hibernate.SessionFactory;
+import org.openmrs.User;
+import org.openmrs.module.dataintegrityworkflow.IntegrityRecordStageChange;
+import org.openmrs.module.dataintegrityworkflow.IntegrityWorkflowRecord;
+import org.openmrs.module.dataintegrityworkflow.RecordAssignee;
+import org.openmrs.module.dataintegrityworkflow.WorkflowStage;
 
 /**
  * @author: harsha
@@ -33,6 +38,19 @@ public interface DataIntegrityWorkflowDAO {
      */
     public SessionFactory getSessionFactory();
 
+    public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord);
 
+    public void saveWorkflowStage(WorkflowStage workflowStage);
+
+    public void saveWorkflowAssignee(RecordAssignee recordAssignee);
+
+    public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange);
+
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int recordId);
+
+    public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords();
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByCurrentUser(User user);
 
 }
