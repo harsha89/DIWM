@@ -20,11 +20,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA.
- * User: harsha
- * Date: 6/1/13
- * Time: 7:16 PM
- * To change this template use File | Settings | File Templates.
+ * @author: harsha
  */
 public class RecordAssignee extends BaseOpenmrsObject {
     private Integer recordAssigneeId;
@@ -33,9 +29,9 @@ public class RecordAssignee extends BaseOpenmrsObject {
     private Date assignedDate;
     private User unAssignedBy;
     private Date unAssignedDate;
-    private Set<IntegrityRecordStageChange> integrityRecordStageChnages;
+    private Set<IntegrityRecordStageChange> integrityRecordStageChanges;
     private WorkflowStage currentStage;
-    private IntegrityWorkflowRecord integrityWorkflowRecord;
+    private int integrityWorkflowRecord;
     private boolean isAssigned;
 
     public Integer getId() {
@@ -87,11 +83,11 @@ public class RecordAssignee extends BaseOpenmrsObject {
     }
 
     public Set<IntegrityRecordStageChange> getIntegrityRecordStageChnages() {
-        return integrityRecordStageChnages;
+        return integrityRecordStageChanges;
     }
 
     public void setIntegrityRecordStageChnages(Set<IntegrityRecordStageChange> integrityRecordStageChnages) {
-        this.integrityRecordStageChnages = integrityRecordStageChnages;
+        this.integrityRecordStageChanges = integrityRecordStageChnages;
     }
 
     public WorkflowStage getCurrentStage() {
@@ -100,14 +96,6 @@ public class RecordAssignee extends BaseOpenmrsObject {
 
     public void setCurrentStage(WorkflowStage currentStage) {
         this.currentStage = currentStage;
-    }
-
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord() {
-        return integrityWorkflowRecord;
-    }
-
-    public void setIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
-        this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 
     public boolean isAssigned() {
@@ -124,5 +112,13 @@ public class RecordAssignee extends BaseOpenmrsObject {
 
     public void setRecordAssigneeId(Integer recordAssigneeId) {
         this.recordAssigneeId = recordAssigneeId;
+    }
+
+    public int getIntegrityWorkflowRecord() {
+        return integrityWorkflowRecord;
+    }
+
+    public void setIntegrityWorkflowRecord(int integrityWorkflowRecord) {
+        this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 }

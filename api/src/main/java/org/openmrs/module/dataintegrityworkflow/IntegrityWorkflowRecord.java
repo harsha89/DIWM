@@ -14,17 +14,14 @@
 package org.openmrs.module.dataintegrityworkflow;
 
 import org.openmrs.BaseOpenmrsObject;
+import org.openmrs.module.dataintegrity.IntegrityCheck;
 import org.openmrs.module.dataintegrity.IntegrityCheckColumn;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 
 import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA.
- * User: harsha
- * Date: 6/9/13
- * Time: 6:58 PM
- * To change this template use File | Settings | File Templates.
+ * @author: harsha
  */
 public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private int integrityRecordWorkflowDetailId;
@@ -33,6 +30,7 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private Set<IntegrityRecordComment> integrityRecordComments;
     private IntegrityCheckResult integrityCheckResult;
     private Set<IntegrityCheckColumn> integrityCheckColumns;
+    private IntegrityCheck integrityCheck;
 
     public Integer getId() {
         return getIntegrityRecordWorkflowDetailId();
@@ -88,5 +86,13 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
 
     public void setIntegrityRecordWorkflowDetailId(int integrityRecordWorkflowDetailId) {
         this.integrityRecordWorkflowDetailId = integrityRecordWorkflowDetailId;
+    }
+
+    public IntegrityCheck getIntegrityCheck() {
+        return integrityCheck;
+    }
+
+    public void setIntegrityCheck(IntegrityCheck integrityCheck) {
+        this.integrityCheck = integrityCheck;
     }
 }

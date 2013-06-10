@@ -19,41 +19,32 @@ import org.openmrs.User;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: harsha
- * Date: 6/1/13
- * Time: 2:09 PM
- * To change this template use File | Settings | File Templates.
+ * @author: harsha
  */
 public class IntegrityRecordStageChange extends BaseOpenmrsObject{
-    private int stagenChangeId;
-    private RecordAssignee recordAssignee;
+    private int stageChangeId;
+    private int recordAssigneeId;
     private User changeBy;
     private Date changeDate;
     private WorkflowStage fromWorkflowStage;
     private WorkflowStage toWorkflowStage;
+    private int integrityWorkflowRecordId;
+    private int integrityCheckId;
+
     public Integer getId() {
-        return getStagenChangeId();
+        return getStageChangeId();
     }
 
     public void setId(Integer stagenChangeId) {
-        this.setStagenChangeId(stagenChangeId);
+        this.setStageChangeId(stagenChangeId);
     }
 
-    public int getStagenChangeId() {
-        return stagenChangeId;
+    public int getStageChangeId() {
+        return stageChangeId;
     }
 
-    public void setStagenChangeId(int stagenChangeId) {
-        this.stagenChangeId = stagenChangeId;
-    }
-
-    public RecordAssignee getRecordAssignee() {
-        return recordAssignee;
-    }
-
-    public void setRecordAssignee(RecordAssignee recordAssignee) {
-        this.recordAssignee = recordAssignee;
+    public void setStageChangeId(int stageChangeId) {
+        this.stageChangeId = stageChangeId;
     }
 
     public User getChangeBy() {
@@ -86,5 +77,29 @@ public class IntegrityRecordStageChange extends BaseOpenmrsObject{
 
     public void setToWorkflowStage(WorkflowStage toWorkflowStage) {
         this.toWorkflowStage = toWorkflowStage;
+    }
+
+    public int getRecordAssigneeId() {
+        return recordAssigneeId;
+    }
+
+    public void setRecordAssigneeId(int recordAssigneeId) {
+        this.recordAssigneeId = recordAssigneeId;
+    }
+
+    public int getIntegrityWorkflowRecordId() {
+        return integrityWorkflowRecordId;
+    }
+
+    public void setIntegrityWorkflowRecordId(int integrityWorkflowRecordId) {
+        this.integrityWorkflowRecordId = integrityWorkflowRecordId;
+    }
+
+    public int getIntegrityCheckId() {
+        return integrityCheckId;
+    }
+
+    public void setIntegrityCheckId(int integrityCheckId) {
+        this.integrityCheckId = integrityCheckId;
     }
 }

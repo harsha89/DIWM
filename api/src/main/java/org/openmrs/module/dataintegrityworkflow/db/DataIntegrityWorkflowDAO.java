@@ -15,10 +15,9 @@ package org.openmrs.module.dataintegrityworkflow.db;
 
 import org.hibernate.SessionFactory;
 import org.openmrs.User;
-import org.openmrs.module.dataintegrityworkflow.IntegrityRecordStageChange;
-import org.openmrs.module.dataintegrityworkflow.IntegrityWorkflowRecord;
-import org.openmrs.module.dataintegrityworkflow.RecordAssignee;
-import org.openmrs.module.dataintegrityworkflow.WorkflowStage;
+import org.openmrs.module.dataintegrityworkflow.*;
+
+import java.util.List;
 
 /**
  * @author: harsha
@@ -46,11 +45,31 @@ public interface DataIntegrityWorkflowDAO {
 
     public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange);
 
+    public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int recordId);
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId);
 
     public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords();
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByCurrentUser(User user);
+    public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser);
+
+    public List<IntegrityWorkflowRecord> getAllAssignedIntegrityWorkflowRecordsOfCurrentUser(User assigneduser);
+
+    public List<RecordAssignee> getAllAssignmentsOfUser(User user);
+
+    public RecordAssignee getCurrentAssignmentOfUser(User user);
+
+
+    public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId);
+
+    public void updateIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
+
+    public void updateIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord);
+
+    public void updateWorkflowAssignee(RecordAssignee recordAssignee);
+
+
+    public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
 }

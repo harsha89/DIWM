@@ -14,7 +14,11 @@
 package org.openmrs.module.dataintegrityworkflow.db.hibernate;
 
 import org.hibernate.SessionFactory;
+import org.openmrs.User;
+import org.openmrs.module.dataintegrityworkflow.*;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
+
+import java.util.List;
 
 /**
  * @author: harsha
@@ -37,6 +41,70 @@ public class HibernateDataIntegrityWorkflowDAOImpl implements DataIntegrityWorkf
      */
     public SessionFactory getSessionFactory() {
         return this.sessionFactory;
+    }
+
+    public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void saveWorkflowStage(WorkflowStage workflowStage) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void saveWorkflowAssignee(RecordAssignee recordAssignee) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<IntegrityWorkflowRecord> getAllAssignedIntegrityWorkflowRecordsOfCurrentUser(User assigneduser) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<RecordAssignee> getAllAssignmentsOfUser(User user) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public RecordAssignee getCurrentAssignmentOfUser(User user) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void updateIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void updateIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void updateWorkflowAssignee(RecordAssignee recordAssignee) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 }
