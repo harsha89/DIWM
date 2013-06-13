@@ -30,7 +30,7 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private Set<IntegrityRecordComment> integrityRecordComments;
     private IntegrityCheckResult integrityCheckResult;
     private Set<IntegrityCheckColumn> integrityCheckColumns;
-    private IntegrityCheck integrityCheck;
+    private int integrityCheckId;
 
     public Integer getId() {
         return getIntegrityRecordWorkflowDetailId();
@@ -88,11 +88,11 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
         this.integrityRecordWorkflowDetailId = integrityRecordWorkflowDetailId;
     }
 
-    public IntegrityCheck getIntegrityCheck() {
-        return integrityCheck;
+    public int getIntegrityCheck() {
+        return integrityCheckId;
     }
 
-    public void setIntegrityCheck(IntegrityCheck integrityCheck) {
-        this.integrityCheck = integrityCheck;
+    public void setIntegrityCheck(int integrityCheckd) {
+        this.integrityCheckId = integrityCheckId;
     }
 }

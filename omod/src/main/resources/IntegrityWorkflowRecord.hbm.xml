@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.dataintegrityworkflow">
+    <class name="IntegrityWorkflowRecord" table="workflow_record_id">
+        <id column="workflow_record_id" name="id" type="int">
+            <generator class="native"/>
+        </id>
+
+        <property name="integrityCheckId" type="int">
+            <column name="integrity_check_id" not-null="true"/>
+        </property>
+
+        <!-- associated data -->
+        <many-to-one class="RecordAssignee" column="current_assignee_id" name="currentAssignee" />
+
+        <set name="previousRecordAssignees" lazy="true" cascade="all-delete-orphan"
+             table="record_assignee" inverse="true" sort="unsorted"
+             order-by="date_assigned desc">
+            <key column="workflow_record_id" not-null="true"/>
+            <one-to-many class="RecordAssignee"/>
+        </set>
+
+        <set name="integrityRecordComments" lazy="true" cascade="all-delete-orphan"
+             table="workflow_record_comment" inverse="true" sort="unsorted"
+             order-by="date_created asc">
+            <key column="workflow_record_id" not-null="true"/>
+            <one-to-many class="IntegrityRecordComment"/>
+        </set>
+
+        <many-to-one class="org.openmrs.module.dataintegrity.IntegrityCheckResult" column="integrity_result_id" name="integrityCheckResult" />
+
+        <set name="integrityCheckColumns" lazy="true" cascade="all-delete-orphan"
+             table="dataintegrity_column" inverse="true" sort="unsorted"
+             order-by="column_index asc">
+            <key column="integrity_check_id" not-null="true"/>
+            <one-to-many class="org.openmrs.module.dataintegrity.IntegrityCheckColumn"/>
+        </set>
+
+        <!-- BaseOpenmrsObject properties -->
+        <property name="uuid" type="java.lang.String" length="38" unique="true"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.dataintegrityworkflow">
+    <class name="org.openmrs.module.dataintegrityworkflow.RecordAssignee" table="record_assignee">
+        <id name="recordAssigneeId" type="java.lang.Integer">
+            <column name="assignee_id"/>
+            <generator class="native"/>
+        </id>
+        <many-to-one class="org.openmrs.User" column="assignee" name="assignee" not-null="true"/>
+        <many-to-one class="org.openmrs.User" column="assign_by" name="assignedBy"/>
+        <many-to-one class="org.openmrs.User" column="unassign_by" name="unAssignedBy"/>
+
+        <property name="assignedDate" type="timestamp">
+            <column length="19" name="date_assigned" not-null="true"/>
+        </property>
+        <property name="unAssignedDate" type="timestamp">
+            <column length="19" name="date_unassign"/>
+        </property>
+        <property name="uuid" type="string">
+            <column length="38" name="uuid"/>
+        </property>
+
+        <set name="integrityRecordStageChanges" lazy="true" cascade="all-delete-orphan"
+             table="workflow_record_stagechange" inverse="true" sort="unsorted"
+             order-by="date_created asc">
+            <key column="record_assignee_id" not-null="true"/>
+            <one-to-many class="IntegrityRecordStageChange"/>
+        </set>
+
+        <many-to-one name="currentStage" class="WorkflowStage" column="current_stage_id"/>
+        <many-to-one name="integrityWorkflowRecord" class="IntegrityWorkflowRecord" column="workflow_record_id"/>
+
+        <property name="isAssigned" type="boolean">
+            <column name="is_assigned"/>
+        </property>
+
+
+    </class>
+</hibernate-mapping>

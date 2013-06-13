@@ -38,27 +38,21 @@
 	
 	<!-- Required Privileges -->
     <privilege>
-        <name>Manage Assignments</name>
+        <name>Manage Record Assignees</name>
         <description>Allows manager to assign records to users</description>
     </privilege>
 	<privilege>
-		<name>View Assignments</name>
+		<name>View Record Assignments</name>
 		<description>Allows user to access assigned records</description>
 	</privilege>
 	 <!--Required Privileges -->
 
 
-	<!-- Required Global Properties 
-	<globalProperty>
-		<property>@MODULE_ID@.someProperty</property>
-		<defaultValue></defaultValue>
-		<description>
-			A description of the global property goes here.  The description
-			should explain enough for administrators to understand the purpose
-			and possible values for the global property.
-		</description>
-	</globalProperty>
-	/Required Global Properties -->
+    <globalProperty>
+        <property>integrityworkflow.notification</property>
+        <defaultValue>A New Feedback Submitted Successfully</defaultValue>
+        <description>What message should be sent to the user once feedback is successfully submitted</description>
+    </globalProperty>
 	
 	<!--
 	<dwr>

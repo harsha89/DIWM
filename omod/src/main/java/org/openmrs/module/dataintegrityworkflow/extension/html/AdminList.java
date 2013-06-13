@@ -13,9 +13,12 @@
  */
 package org.openmrs.module.dataintegrityworkflow.extension.html;
 
+import org.openmrs.api.context.Context;
+import org.openmrs.module.dataintegrityworkflow.IntegrityWorkflowConstants;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -38,17 +41,25 @@ public class AdminList extends AdministrationSectionExt {
 	public String getTitle() {
 		return "dataintegrityworkflow.title";
 	}
-	
-	/**
-	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getLinks()
-	 */
-	public Map<String, String> getLinks() {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("module/dataintegrityworkflow/basicmoduleLink.form", "dataintegrityworkflow.replace.this.link.name");
-		
-		return map;
-	}
+
+    public String getRequiredPrivilege() {
+        return IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS;
+    }
+
+    public Map<String, String> getLinks() {
+
+        Map<String, String> map = new LinkedHashMap<String, String>();
+
+        if (Context.hasPrivilege(IntegrityWorkflowConstants.MANAGE_RECORD_ASSIGNEES)) {
+            map.put("module/dataintegrityworkflow/integrityRecords.list", "dataintegrityworkflow.manage.link");
+        }
+        if (Context.hasPrivilege(IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS)) {
+            map.put("module/dataintegrityworkflow/viewAssignments.list", "dataintegrityworkflow.view.link");
+        }
+        if (Context.hasPrivilege(IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS)) {
+            map.put("module/dataintegrityworkflow/addStage.htm", "dataintegrityworkflow.stage.link");
+        }
+        return map;
+    }
 	
 }

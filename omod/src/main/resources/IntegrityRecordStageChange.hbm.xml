@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.dataintegrityworkflow">
+    <class name="IntegrityRecordStageChange" table="workflow_record_stagechange">
+
+        <id column="record_stagechange_id" name="stageChangeId" type="int" unsaved-value="0">
+            <generator class="native"/>
+        </id>
+        <property name="recordAssigneeId" type="int">
+            <column name="record_assignee_id" not-null="true"/>
+        </property>
+        <property name="integrityWorkflowRecordId" type="int">
+            <column name="workflow_record_id" not-null="true"/>
+        </property>
+        <many-to-one class="org.openmrs.User" column="creator" name="changeBy" not-null="true"/>
+        <property column="date_created" length="19" name="changeDate" not-null="true" type="timestamp"/>
+        <many-to-one name="fromWorkflowStage" class="WorkflowStage" column="from_workflow_stage_id"/>
+        <many-to-one name="toWorkflowStage" class="WorkflowStage" column="to_workflow_stage_id"/>
+
+        <!-- BaseOpenmrsObject property -->
+        <property length="38" name="uuid" type="java.lang.String" unique="true"/>
+
+    </class>
+</hibernate-mapping>

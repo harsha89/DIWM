@@ -30,8 +30,8 @@ public class RecordAssignee extends BaseOpenmrsObject {
     private User unAssignedBy;
     private Date unAssignedDate;
     private Set<IntegrityRecordStageChange> integrityRecordStageChanges;
+    private IntegrityWorkflowRecord integrityWorkflowRecord;
     private WorkflowStage currentStage;
-    private int integrityWorkflowRecord;
     private boolean isAssigned;
 
     public Integer getId() {
@@ -114,11 +114,11 @@ public class RecordAssignee extends BaseOpenmrsObject {
         this.recordAssigneeId = recordAssigneeId;
     }
 
-    public int getIntegrityWorkflowRecord() {
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord() {
         return integrityWorkflowRecord;
     }
 
-    public void setIntegrityWorkflowRecord(int integrityWorkflowRecord) {
+    public void setIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
         this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 }

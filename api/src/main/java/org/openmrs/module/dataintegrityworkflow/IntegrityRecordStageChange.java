@@ -29,7 +29,6 @@ public class IntegrityRecordStageChange extends BaseOpenmrsObject{
     private WorkflowStage fromWorkflowStage;
     private WorkflowStage toWorkflowStage;
     private int integrityWorkflowRecordId;
-    private int integrityCheckId;
 
     public Integer getId() {
         return getStageChangeId();
@@ -95,11 +94,4 @@ public class IntegrityRecordStageChange extends BaseOpenmrsObject{
         this.integrityWorkflowRecordId = integrityWorkflowRecordId;
     }
 
-    public int getIntegrityCheckId() {
-        return integrityCheckId;
-    }
-
-    public void setIntegrityCheckId(int integrityCheckId) {
-        this.integrityCheckId = integrityCheckId;
-    }
 }

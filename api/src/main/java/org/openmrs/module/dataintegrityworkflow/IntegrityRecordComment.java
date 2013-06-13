@@ -14,12 +14,13 @@
 package org.openmrs.module.dataintegrityworkflow;
 
 import org.openmrs.BaseOpenmrsData;
+import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 
 /**
  * @author: harsha
  */
-public class IntegrityRecordComment extends BaseOpenmrsData{
+public class IntegrityRecordComment extends BaseOpenmrsMetadata{
 
     private Integer integrityRecordCommentId;
     private int integrityWorkflowRecordId;
