@@ -7,7 +7,7 @@
             <generator class="native"/>
         </id>
         <many-to-one class="org.openmrs.User" column="assignee" name="assignee" not-null="true"/>
-        <many-to-one class="org.openmrs.User" column="assign_by" name="assignedBy"/>
+        <many-to-one class="org.openmrs.User" column="assign_by" name="assignedBy" not-null="true"/>
         <many-to-one class="org.openmrs.User" column="unassign_by" name="unAssignedBy"/>
 
         <property name="assignedDate" type="timestamp">

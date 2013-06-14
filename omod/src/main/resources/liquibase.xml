@@ -1,40 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
- 
-    <!--
-    	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for 
-    	documentation on this file.
-    
-        See http://www.liquibase.org/manual/home#available_database_refactorings
-        for a list of supported elements and attributes
-    -->
- 
- 	<!-- Uncomment this and edit the values below to use this file
- 	
-	<changeSet id="mymoduleid-2010-05-25-15:50" author="bwolfe">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="mymoduleid_myobject"/></not>
-		</preConditions>
-		<comment>
-			Creating the mymoduleid_myobject table
-		</comment>
-		<createTable tableName="mymoduleid_myobject">
-			<column name="mymoduleid_myobject_id" type="int">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="firstname" type="varchar(255)"/>
-			<column name="lastname" type="varchar(255)"/>
-			<column name="username" type="varchar(255)">
-				<constraints unique="true" nullable="false"/>
-			</column>
-			<column name="testid" type="int" />
-		</createTable>
+
+    <changeSet id="dataintegrityworkflow-2013-06-13-22:07" author="harsha">
+    <preConditions onFail="MARK_RAN">
+        <not><tableExists tableName="workflow_record"/></not>
+        <not><tableExists tableName="record_assignee"/></not>
+        <not><tableExists tableName="integrity_workflow_stage"/></not>
+        <not><tableExists tableName="workflow_record_stagechange"/></not>
+        <not><tableExists tableName="workflow_record_comment"/></not>
+    </preConditions>
+
+    <comment>
+        Creating the data integrity workflow module tables
+    </comment>
+
+        <createTable tableName="workflow_record">
+            <column name="workflow_record_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="current_assignee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="integrity_check_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="integrity_result_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="uuid" type="varchar(38)"/>
+        </createTable>
+
+        <createTable tableName="record_assignee">
+            <column name="assignee_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="assignee" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assign_by" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unassign_by" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_assigned" type="datetime" />
+            <column name="date_unassign" type="datetime" />
+            <column name="is_assigned" type="boolean" />
+            <column name="current_stage_id" type="int" />
+            <column name="workflow_record_id" type="int" />
+
+            <column name="uuid" type="varchar(38)"/>
+        </createTable>
+
+        <createTable tableName="workflow_record_comment">
+            <column name="record_comment_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="workflow_record_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="varchar(5000)"/>
+            <column name="creator" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="changed_by" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="retired_by" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_created" type="datetime" />
+            <column name="date_changed" type="datetime" />
+            <column name="date_retired" type="datetime" />
+            <column name="retired_reason" type="varchar(50)"/>
+            <column name="uuid" type="varchar(38)"/>
+        </createTable>
+
+        <createTable tableName="workflow_record_stagechange">
+            <column name="record_stagechange_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="record_assignee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="workflow_record_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="creator" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="from_workflow_stage_id" type="int">
+                <constraints nullable="true"/>
+            </column><column name="to_workflow_stage_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_created" type="datetime" />
+            <column name="uuid" type="varchar(38)"/>
+        </createTable>
+
+        <createTable tableName="integrity_workflow_stage">
+            <column name="workflow_stage_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="varchar(50)"/>
+            <column name="uuid" type="varchar(38)"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_integrity_check_id"
+                                 referencedTableName="dataintegrity_check" baseColumnNames="check_id"
+                                 baseTableName="workflow_record" referencedColumnNames="integrity_check_id" />
+        <addForeignKeyConstraint constraintName="fk_integrity_result_id"
+                                 referencedTableName="dataintegrity_result" baseColumnNames="record_id"
+                                 baseTableName="workflow_record" referencedColumnNames="integrity_result_id" />
+        <addForeignKeyConstraint constraintName="fk_workflow_record_id"
+                                 referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
+                                 baseTableName="record_assignee" referencedColumnNames="workflow_record_id" />
+        <addForeignKeyConstraint constraintName="fk_workflow_record_id_of_record_comment"
+                                 referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
+                                 baseTableName="workflow_record_comment" referencedColumnNames="workflow_record_id" />
+        <addForeignKeyConstraint constraintName="fk_workflow_record_id_of_record_stage_change"
+                                 referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
+                                 baseTableName="workflow_record_stagechange" referencedColumnNames="workflow_record_id" />
+
+        <addAutoIncrement tableName="workflow_record" columnName="workflow_record_id" columnDataType="int"/>
+        <addAutoIncrement tableName="record_assignee" columnName="feedback_id" columnDataType="int"/>
+        <addAutoIncrement tableName="integrity_workflow_stage" columnName="workflow_stage_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_stagechange" columnName="feedback_status_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_comment" columnName="feedback_status_id" columnDataType="int"/>
     </changeSet>
-    
-    -->
- 
 </databaseChangeLog>
