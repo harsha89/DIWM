@@ -128,9 +128,10 @@
                                  baseTableName="workflow_record_stagechange" referencedColumnNames="workflow_record_id" />
 
         <addAutoIncrement tableName="workflow_record" columnName="workflow_record_id" columnDataType="int"/>
-        <addAutoIncrement tableName="record_assignee" columnName="feedback_id" columnDataType="int"/>
+        <addAutoIncrement tableName="record_assignee" columnName="assignee_id" columnDataType="int"/>
         <addAutoIncrement tableName="integrity_workflow_stage" columnName="workflow_stage_id" columnDataType="int"/>
-        <addAutoIncrement tableName="workflow_record_stagechange" columnName="feedback_status_id" columnDataType="int"/>
-        <addAutoIncrement tableName="workflow_record_comment" columnName="feedback_status_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_stagechange" columnName="record_stagechange_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_comment" columnName="record_comment_id" columnDataType="int"/>
+
     </changeSet>
 </databaseChangeLog>
