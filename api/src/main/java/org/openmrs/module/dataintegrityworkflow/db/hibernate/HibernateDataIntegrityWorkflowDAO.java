@@ -21,9 +21,9 @@ import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 import java.util.List;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
-public class HibernateDataIntegrityWorkflowDAOImpl implements DataIntegrityWorkflowDAO {
+public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowDAO {
     /**
      * the session factory to use in this DAO
      */

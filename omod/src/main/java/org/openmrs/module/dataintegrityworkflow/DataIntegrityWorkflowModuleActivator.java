@@ -18,6 +18,10 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.Activator;
 
 /**
+ * @author: harsz89
+ */
+
+/**
  * This class contains the logic that is run every time this module is either started or shutdown
  */
 public class DataIntegrityWorkflowModuleActivator implements Activator {

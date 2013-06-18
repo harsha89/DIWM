@@ -18,8 +18,9 @@ import org.openmrs.BaseOpenmrsData;
 import java.io.Serializable;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
+
 /**
  * Pojo file for the workflow stages relation in the Data Integrity Workflow Module
  */

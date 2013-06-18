@@ -25,7 +25,7 @@ import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 import java.util.List;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
 public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowService {
 

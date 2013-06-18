@@ -21,7 +21,7 @@ import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import java.util.Set;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
 public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private int integrityRecordWorkflowDetailId;

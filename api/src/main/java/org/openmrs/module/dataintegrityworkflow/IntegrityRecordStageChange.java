@@ -19,7 +19,7 @@ import org.openmrs.User;
 import java.util.Date;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
 public class IntegrityRecordStageChange extends BaseOpenmrsObject{
     private int stageChangeId;

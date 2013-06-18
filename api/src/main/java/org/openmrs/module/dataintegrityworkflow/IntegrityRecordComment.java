@@ -18,7 +18,7 @@ import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
 public class IntegrityRecordComment extends BaseOpenmrsMetadata{
 

@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * @author: harsha
+ * @author: harsz89
  */
 public class RecordAssignee extends BaseOpenmrsObject {
     private Integer recordAssigneeId;

@@ -70,7 +70,7 @@
                     <property name="target">
                         <bean class="org.openmrs.module.dataintegrityworkflow.impl.DataIntegrityWorkflowServiceImpl">
                             <property name="DataIntegrityWorkflowDAO">
-                                <bean class="org.openmrs.module.dataintegrityworkflow.db.hibernate.HibernateDataIntegrityWorkflowDAOImpl">
+                                <bean class="org.openmrs.module.dataintegrityworkflow.db.hibernate.HibernateDataIntegrityWorkflowDAO">
                                     <property name="sessionFactory"><ref bean="sessionFactory"/></property>
                                 </bean>
                             </property>
