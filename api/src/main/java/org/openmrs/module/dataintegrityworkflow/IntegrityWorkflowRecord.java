@@ -40,6 +40,15 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
         this.setIntegrityRecordWorkflowDetailId(integrityRecordWorkflowDetailId);
     }
 
+
+    public int getIntegrityRecordWorkflowDetailId() {
+        return integrityRecordWorkflowDetailId;
+    }
+
+    public void setIntegrityRecordWorkflowDetailId(int integrityRecordWorkflowDetailId) {
+        this.integrityRecordWorkflowDetailId = integrityRecordWorkflowDetailId;
+    }
+
     public RecordAssignee getCurrentAssignee() {
         return currentAssignee;
     }
@@ -80,19 +89,11 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
         this.integrityCheckColumns = integrityCheckColumns;
     }
 
-    public int getIntegrityRecordWorkflowDetailId() {
-        return integrityRecordWorkflowDetailId;
-    }
-
-    public void setIntegrityRecordWorkflowDetailId(int integrityRecordWorkflowDetailId) {
-        this.integrityRecordWorkflowDetailId = integrityRecordWorkflowDetailId;
-    }
-
-    public int getIntegrityCheck() {
+    public int getIntegrityCheckId() {
         return integrityCheckId;
     }
 
-    public void setIntegrityCheck(int integrityCheckd) {
+    public void setIntegrityCheckId(int integrityCheckId) {
         this.integrityCheckId = integrityCheckId;
     }
 }

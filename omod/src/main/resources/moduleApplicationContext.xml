@@ -20,51 +20,51 @@
     </bean>
 
     <bean id="addWorkflowStageForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.AddWorkflowStageFormController">
-        <property name="commandName"><value>feedbackPageMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/addWorkflowStageForm</value></property>
         <property name="successView"><value>redirect:addWorkflowStage.form</value></property>
     </bean>
 
     <bean id="manageIntegrityRecordsForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ManageIntegrityRecordsFormController">
-        <property name="commandName"><value></value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/manageIntegrityRecordsForm</value></property>
         <property name="successView"><value>redirect:manageIntegrityRecords.form</value></property>
     </bean>
 
     <bean id="viewRecordSummaryForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ViewRecordSummaryFormController">
-        <property name="commandName"><value>feedbackMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/viewRecordSummaryForm</value></property>
         <property name="successView"><value>redirect:viewRecordSummary.form</value></property>
     </bean>
 
     <bean id="viewAssignedRecordsForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ViewAssignedRecordsFormController">
-        <property name="commandName"><value>feedbackMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/viewAssignedRecordsForm</value></property>
         <property name="successView"><value>redirect:viewAssignedRecords.form</value></property>
     </bean>
 
     <bean id="viewChecksForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ViewChecksFormController">
-        <property name="commandName"><value>feedbackMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/viewChecksForm</value></property>
-        <property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
+        <property name="successView"><value>redirect:viewChecks.form</value></property>
     </bean>
 
     <bean id="viewCheckSummaryForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ViewCheckSummaryFormController">
-        <property name="commandName"><value>feedbackMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/viewCheckSummaryForm</value></property>
-        <property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
+        <property name="successView"><value>redirect:viewCheckSummary.form</value></property>
     </bean>
 
     <bean id="viewRecordForm" class="org.openmrs.module.dataintegrityworkflow.web.controller.ViewRecordFormController">
-        <property name="commandName"><value>feedbackMessage</value></property>
+        <property name="commandName"><value>helloWorldObject</value></property>
         <property name="formView"><value>/module/dataintegrityworkflow/viewRecordForm</value></property>
-        <property name="successView"><value>redirect:addPredefinedSubject.form</value></property>
+        <property name="successView"><value>redirect:viewRecord.form</value></property>
     </bean>
 
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.feedback.FeedbackService</value> <!-- service interface name -->
+                <value>org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService</value> <!-- service interface name -->
                 <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager"><ref bean="transactionManager"/></property>
                     <property name="target">

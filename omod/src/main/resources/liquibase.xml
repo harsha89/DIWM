@@ -8,8 +8,8 @@
     <changeSet id="dataintegrityworkflow-2013-06-13-22:07" author="harsha">
     <preConditions onFail="MARK_RAN">
         <not><tableExists tableName="workflow_record"/></not>
-        <not><tableExists tableName="record_assignee"/></not>
-        <not><tableExists tableName="integrity_workflow_stage"/></not>
+        <not><tableExists tableName="workflow_record_assignee"/></not>
+        <not><tableExists tableName="workflow_record_stage"/></not>
         <not><tableExists tableName="workflow_record_stagechange"/></not>
         <not><tableExists tableName="workflow_record_comment"/></not>
     </preConditions>
@@ -34,7 +34,7 @@
             <column name="uuid" type="varchar(38)"/>
         </createTable>
 
-        <createTable tableName="record_assignee">
+        <createTable tableName="workflow_record_assignee">
             <column name="assignee_id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -102,7 +102,7 @@
             <column name="uuid" type="varchar(38)"/>
         </createTable>
 
-        <createTable tableName="integrity_workflow_stage">
+        <createTable tableName="workflow_record_stage">
             <column name="workflow_stage_id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -112,14 +112,14 @@
         </createTable>
 
         <addForeignKeyConstraint constraintName="fk_integrity_check_id"
-                                 referencedTableName="dataintegrity_check" baseColumnNames="check_id"
-                                 baseTableName="workflow_record" referencedColumnNames="integrity_check_id" />
+                                 referencedTableName="dataintegrity_check" baseColumnNames="integrity_check_id"
+                                 baseTableName="workflow_record" referencedColumnNames="check_id" />
         <addForeignKeyConstraint constraintName="fk_integrity_result_id"
-                                 referencedTableName="dataintegrity_result" baseColumnNames="record_id"
-                                 baseTableName="workflow_record" referencedColumnNames="integrity_result_id" />
+                                 referencedTableName="dataintegrity_result" baseColumnNames="integrity_result_id"
+                                 baseTableName="workflow_record" referencedColumnNames="result_id" />
         <addForeignKeyConstraint constraintName="fk_workflow_record_id"
                                  referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
-                                 baseTableName="record_assignee" referencedColumnNames="workflow_record_id" />
+                                 baseTableName="workflow_record_assignee" referencedColumnNames="workflow_record_id" />
         <addForeignKeyConstraint constraintName="fk_workflow_record_id_of_record_comment"
                                  referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
                                  baseTableName="workflow_record_comment" referencedColumnNames="workflow_record_id" />
@@ -128,8 +128,8 @@
                                  baseTableName="workflow_record_stagechange" referencedColumnNames="workflow_record_id" />
 
         <addAutoIncrement tableName="workflow_record" columnName="workflow_record_id" columnDataType="int"/>
-        <addAutoIncrement tableName="record_assignee" columnName="assignee_id" columnDataType="int"/>
-        <addAutoIncrement tableName="integrity_workflow_stage" columnName="workflow_stage_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_assignee" columnName="assignee_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_stage" columnName="workflow_stage_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_stagechange" columnName="record_stagechange_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_comment" columnName="record_comment_id" columnDataType="int"/>
 

@@ -32,7 +32,7 @@ public class RecordAssignee extends BaseOpenmrsObject {
     private Set<IntegrityRecordStageChange> integrityRecordStageChanges;
     private IntegrityWorkflowRecord integrityWorkflowRecord;
     private WorkflowStage currentStage;
-    private boolean isAssigned;
+    private boolean assigned;
 
     public Integer getId() {
         return this.getRecordAssigneeId();
@@ -82,28 +82,12 @@ public class RecordAssignee extends BaseOpenmrsObject {
         this.unAssignedDate = unAssignedDate;
     }
 
-    public Set<IntegrityRecordStageChange> getIntegrityRecordStageChnages() {
-        return integrityRecordStageChanges;
-    }
-
-    public void setIntegrityRecordStageChnages(Set<IntegrityRecordStageChange> integrityRecordStageChnages) {
-        this.integrityRecordStageChanges = integrityRecordStageChnages;
-    }
-
     public WorkflowStage getCurrentStage() {
         return currentStage;
     }
 
     public void setCurrentStage(WorkflowStage currentStage) {
         this.currentStage = currentStage;
-    }
-
-    public boolean isAssigned() {
-        return isAssigned;
-    }
-
-    public void setAssigned(boolean assigned) {
-        isAssigned = assigned;
     }
 
     public Integer getRecordAssigneeId() {
@@ -120,5 +104,21 @@ public class RecordAssignee extends BaseOpenmrsObject {
 
     public void setIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
         this.integrityWorkflowRecord = integrityWorkflowRecord;
+    }
+
+    public Set<IntegrityRecordStageChange> getIntegrityRecordStageChanges() {
+        return integrityRecordStageChanges;
+    }
+
+    public void setIntegrityRecordStageChanges(Set<IntegrityRecordStageChange> integrityRecordStageChanges) {
+        this.integrityRecordStageChanges = integrityRecordStageChanges;
+    }
+
+    public boolean getAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(boolean assigned) {
+        this.assigned = assigned;
     }
 }
