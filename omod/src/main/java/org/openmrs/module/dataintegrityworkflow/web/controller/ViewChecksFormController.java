@@ -13,17 +13,31 @@
  */
 package org.openmrs.module.dataintegrityworkflow.web.controller;
 
+import org.openmrs.api.context.Context;
+import org.openmrs.module.dataintegrity.IntegrityCheck;
+import org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author: harsz89
  */
 public class ViewChecksFormController extends SimpleFormController {
-    protected Boolean formBackingObject(HttpServletRequest request) throws Exception {
-        return null;
+
+    private DataIntegrityWorkflowService getDataIntegrityWorkflowService() {
+        return (DataIntegrityWorkflowService) Context.getService(DataIntegrityWorkflowService.class);
+    }
+    protected Object formBackingObject(HttpServletRequest request) throws Exception {
+        List<IntegrityCheck> checks=new ArrayList<IntegrityCheck>();
+        if(Context.isAuthenticated())
+        {
+          checks=getDataIntegrityWorkflowService().getAllIntegrityChecks();
+        }
+        return checks;
     }
 
     protected Map referenceData(HttpServletRequest req) throws Exception {

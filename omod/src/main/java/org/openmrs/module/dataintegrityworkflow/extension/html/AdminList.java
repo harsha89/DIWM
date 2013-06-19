@@ -54,13 +54,13 @@ public class AdminList extends AdministrationSectionExt {
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         if (Context.hasPrivilege(IntegrityWorkflowConstants.MANAGE_RECORD_ASSIGNEES)) {
-            map.put("module/dataintegrityworkflow/integrityRecords.list", "dataintegrityworkflow.manage.link");
+            map.put("/module/dataintegrityworkflow/manageIntegrityRecords.form", "dataintegrityworkflow.manage.link");
         }
         if (Context.hasPrivilege(IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS)) {
-            map.put("module/dataintegrityworkflow/viewAssignments.list", "dataintegrityworkflow.view.link");
+            map.put("/module/dataintegrityworkflow/viewAssignedRecords.form", "dataintegrityworkflow.view.link");
         }
         if (Context.hasPrivilege(IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS)) {
-            map.put("module/dataintegrityworkflow/addStage.htm", "dataintegrityworkflow.stage.link");
+            map.put("/module/dataintegrityworkflow/addWorkflowStage.form", "dataintegrityworkflow.stage.link");
         }
         return map;
     }
