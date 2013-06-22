@@ -67,6 +67,7 @@ public interface DataIntegrityWorkflowService {
 
     public RecordAssignee getCurrentAssignmentOfUser(User user);
 
+    public List<IntegrityWorkflowRecordWithCheckResult> getAllIntegrityWorkflowRecordWithCheckResult(int checkId);
 
     public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId);
 

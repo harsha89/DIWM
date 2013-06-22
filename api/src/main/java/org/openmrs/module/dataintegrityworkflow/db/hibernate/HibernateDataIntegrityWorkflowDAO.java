@@ -67,7 +67,7 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords() {
+    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecords() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

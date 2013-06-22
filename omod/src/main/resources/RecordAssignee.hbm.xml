@@ -7,33 +7,23 @@
             <generator class="native"/>
         </id>
         <many-to-one class="org.openmrs.User" column="assignee" name="assignee" not-null="true"/>
-        <many-to-one class="org.openmrs.User" column="assign_by" name="assignedBy" not-null="true"/>
-        <many-to-one class="org.openmrs.User" column="unassign_by" name="unAssignedBy"/>
 
-        <property name="assignedDate" type="timestamp">
-            <column length="19" name="date_assigned" not-null="true"/>
-        </property>
-        <property name="unAssignedDate" type="timestamp">
-            <column length="19" name="date_unassign"/>
-        </property>
         <property name="uuid" type="string">
             <column length="38" name="uuid"/>
         </property>
 
-        <set name="integrityRecordStageChanges" lazy="true" cascade="all-delete-orphan"
-             table="workflow_record_stagechange" inverse="true" sort="unsorted"
+        <set name="integrityRecordAssignmentList" lazy="true" cascade="all-delete-orphan"
+             table="workflow_record_assignment" inverse="true" sort="unsorted"
              order-by="date_created asc">
-            <key column="record_assignee_id" not-null="true"/>
-            <one-to-many class="IntegrityRecordStageChange"/>
+            <key column="workflow_record_assignee_id" not-null="true"/>
+            <one-to-many class="IntegrityRecordAssignment"/>
         </set>
 
-        <many-to-one name="currentStage" class="WorkflowStage" column="current_stage_id"/>
         <many-to-one name="integrityWorkflowRecord" class="IntegrityWorkflowRecord" column="workflow_record_id"/>
 
         <property name="assigned" type="boolean">
             <column name="is_assigned"/>
         </property>
-
 
     </class>
 </hibernate-mapping>

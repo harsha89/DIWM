@@ -36,6 +36,10 @@
             <one-to-many class="org.openmrs.module.dataintegrity.IntegrityCheckColumn"/>
         </set>
 
+        <property name="lastUpdated" type="timestamp">
+            <column length="19" name="date_updated"/>
+        </property>
+
         <!-- BaseOpenmrsObject properties -->
         <property name="uuid" type="java.lang.String" length="38" unique="true"/>
     </class>

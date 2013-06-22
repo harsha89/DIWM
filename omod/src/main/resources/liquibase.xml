@@ -12,6 +12,7 @@
         <not><tableExists tableName="workflow_record_stage"/></not>
         <not><tableExists tableName="workflow_record_stagechange"/></not>
         <not><tableExists tableName="workflow_record_comment"/></not>
+        <not><tableExists tableName="workflow_record_assignment"/></not>
     </preConditions>
 
     <comment>
@@ -31,7 +32,10 @@
             <column name="integrity_result_id" type="int">
                 <constraints nullable="true"/>
             </column>
+
             <column name="uuid" type="varchar(38)"/>
+
+            <column name="date_updated" type="datetime" />
         </createTable>
 
         <createTable tableName="workflow_record_assignee">
@@ -41,6 +45,15 @@
             <column name="assignee" type="int">
                 <constraints nullable="false"/>
             </column>
+            <column name="is_assigned" type="boolean" />
+            <column name="workflow_record_id" type="int" />
+            <column name="uuid" type="varchar(38)"/>
+        </createTable>
+
+        <createTable tableName="workflow_record_assignment">
+            <column name="assignment_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
             <column name="assign_by" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -49,10 +62,9 @@
             </column>
             <column name="date_assigned" type="datetime" />
             <column name="date_unassign" type="datetime" />
-            <column name="is_assigned" type="boolean" />
-            <column name="current_stage_id" type="int" />
-            <column name="workflow_record_id" type="int" />
 
+            <column name="current_stage_id" type="int" />
+            <column name="workflow_record_assignee_id" type="int" />
             <column name="uuid" type="varchar(38)"/>
         </createTable>
 
@@ -84,18 +96,16 @@
             <column name="record_stagechange_id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="record_assignee_id" type="int">
+            <column name="record_assignment_id" type="int">
                 <constraints nullable="false"/>
-            </column>
-            <column name="workflow_record_id" type="int">
-                <constraints nullable="true"/>
             </column>
             <column name="creator" type="int">
                 <constraints nullable="true"/>
             </column>
             <column name="from_workflow_stage_id" type="int">
                 <constraints nullable="true"/>
-            </column><column name="to_workflow_stage_id" type="int">
+            </column>
+            <column name="to_workflow_stage_id" type="int">
                 <constraints nullable="true"/>
             </column>
             <column name="date_created" type="datetime" />
@@ -123,15 +133,34 @@
         <addForeignKeyConstraint constraintName="fk_workflow_record_id_of_record_comment"
                                  referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
                                  baseTableName="workflow_record_comment" referencedColumnNames="workflow_record_id" />
-        <addForeignKeyConstraint constraintName="fk_workflow_record_id_of_record_stage_change"
-                                 referencedTableName="workflow_record" baseColumnNames="workflow_record_id"
-                                 baseTableName="workflow_record_stagechange" referencedColumnNames="workflow_record_id" />
+        <addForeignKeyConstraint constraintName="fk_workflow_assignee_id_of_workflow_record_assignment"
+                                 referencedTableName="workflow_record_assignee" baseColumnNames="workflow_record_assignee_id"
+                                 baseTableName="workflow_record_assignment" referencedColumnNames="assignee_id" />
+        <addForeignKeyConstraint constraintName="fk_workflow_record_assignment_id_of_record_stage_change"
+                                 referencedTableName="workflow_record_assignment" baseColumnNames="record_assignment_id"
+                                 baseTableName="workflow_record_stagechange" referencedColumnNames="assignment_id" />
 
         <addAutoIncrement tableName="workflow_record" columnName="workflow_record_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_assignee" columnName="assignee_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_stage" columnName="workflow_stage_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_stagechange" columnName="record_stagechange_id" columnDataType="int"/>
         <addAutoIncrement tableName="workflow_record_comment" columnName="record_comment_id" columnDataType="int"/>
+        <addAutoIncrement tableName="workflow_record_assignment" columnName="assignment_id" columnDataType="int"/>
 
+        <comment>
+           Adding default workflow stages
+        </comment>
+        <insert tableName="workflow_record_stage">
+            <column name="status" value="Assigned"/>
+        </insert>
+        <insert tableName="workflow_record_stage">
+            <column name="status" value="Resolve"/>
+        </insert>
+        <insert tableName="workflow_record_stage">
+            <column name="status" value="On Progress"/>
+        </insert>
+        <insert tableName="workflow_record_stage">
+            <column name="status" value="Waiting for information"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

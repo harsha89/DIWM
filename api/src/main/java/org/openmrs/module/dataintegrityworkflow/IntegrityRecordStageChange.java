@@ -23,12 +23,11 @@ import java.util.Date;
  */
 public class IntegrityRecordStageChange extends BaseOpenmrsObject{
     private int stageChangeId;
-    private int recordAssigneeId;
+    private int recordAssignmentId;
     private User changeBy;
     private Date changeDate;
     private WorkflowStage fromWorkflowStage;
     private WorkflowStage toWorkflowStage;
-    private int integrityWorkflowRecordId;
 
     public Integer getId() {
         return getStageChangeId();
@@ -78,20 +77,12 @@ public class IntegrityRecordStageChange extends BaseOpenmrsObject{
         this.toWorkflowStage = toWorkflowStage;
     }
 
-    public int getRecordAssigneeId() {
-        return recordAssigneeId;
+    public int getRecordAssignmentId() {
+        return recordAssignmentId;
     }
 
-    public void setRecordAssigneeId(int recordAssigneeId) {
-        this.recordAssigneeId = recordAssigneeId;
-    }
-
-    public int getIntegrityWorkflowRecordId() {
-        return integrityWorkflowRecordId;
-    }
-
-    public void setIntegrityWorkflowRecordId(int integrityWorkflowRecordId) {
-        this.integrityWorkflowRecordId = integrityWorkflowRecordId;
+    public void setRecordAssignmentId(int recordAssignmentId) {
+        this.recordAssignmentId = recordAssignmentId;
     }
 
 }

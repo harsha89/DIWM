@@ -50,7 +50,7 @@ public interface DataIntegrityWorkflowDAO {
 
     public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId);
 
-    public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords();
+    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecords();
 
     public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser);
 

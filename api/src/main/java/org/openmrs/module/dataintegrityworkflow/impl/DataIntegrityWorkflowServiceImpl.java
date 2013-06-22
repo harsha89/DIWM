@@ -19,10 +19,13 @@ import org.openmrs.User;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dataintegrity.DataIntegrityService;
 import org.openmrs.module.dataintegrity.IntegrityCheck;
+import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrityworkflow.*;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author: harsz89
@@ -51,7 +54,7 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
 
     public List<IntegrityCheck> getAllIntegrityChecks()
     {
-       return Context.getService(DataIntegrityService.class).getAllIntegrityChecks();
+        return Context.getService(DataIntegrityService.class).getAllIntegrityChecks();
     }
 
     public IntegrityCheck getIntegrityCheck(Integer checkId) {
@@ -100,6 +103,29 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
 
     public RecordAssignee getCurrentAssignmentOfUser(User user) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<IntegrityWorkflowRecordWithCheckResult> getAllIntegrityWorkflowRecordWithCheckResult(int checkId) {
+        IntegrityCheck integrityCheck=Context.getService(DataIntegrityService.class).getIntegrityCheck(checkId);
+        Set<IntegrityCheckResult> results=integrityCheck.getIntegrityCheckResults();
+        List<IntegrityWorkflowRecord> integrityWorkflowRecords=dao.getAllIntegrityWorkflowRecords();
+        List<IntegrityWorkflowRecordWithCheckResult> integrityWorkflowRecordWithCheckResultList=new ArrayList<IntegrityWorkflowRecordWithCheckResult>();
+        IntegrityWorkflowRecordWithCheckResult  integrityWorkflowRecordWithCheckResult;
+        for(IntegrityCheckResult integrityCheckResult:results)
+        {
+            for(IntegrityWorkflowRecord integrityWorkflowRecord:integrityWorkflowRecords)
+            {
+                if(integrityCheckResult.getIntegrityCheckResultId().equals(integrityWorkflowRecord.getIntegrityCheckResult().getIntegrityCheckResultId()))
+                {
+                    integrityWorkflowRecordWithCheckResult=new IntegrityWorkflowRecordWithCheckResult();
+                    integrityWorkflowRecordWithCheckResult.setIntegrityCheckResult(integrityCheckResult);
+                    integrityWorkflowRecordWithCheckResult.setIntegrityWorkflowRecord(integrityWorkflowRecord);
+                    integrityWorkflowRecordWithCheckResultList.add(integrityWorkflowRecordWithCheckResult);
+                    break;
+                }
+            }
+        }
+        return integrityWorkflowRecordWithCheckResultList;
     }
 
     public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId) {

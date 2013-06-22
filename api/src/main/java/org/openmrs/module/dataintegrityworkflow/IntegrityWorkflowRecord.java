@@ -18,6 +18,7 @@ import org.openmrs.module.dataintegrity.IntegrityCheck;
 import org.openmrs.module.dataintegrity.IntegrityCheckColumn;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -31,6 +32,7 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private IntegrityCheckResult integrityCheckResult;
     private Set<IntegrityCheckColumn> integrityCheckColumns;
     private int integrityCheckId;
+    private Date lastUpdated;
 
     public Integer getId() {
         return getIntegrityRecordWorkflowDetailId();
@@ -95,5 +97,13 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
 
     public void setIntegrityCheckId(int integrityCheckId) {
         this.integrityCheckId = integrityCheckId;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

@@ -54,7 +54,7 @@ public class AdminList extends AdministrationSectionExt {
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         if (Context.hasPrivilege(IntegrityWorkflowConstants.MANAGE_RECORD_ASSIGNEES)) {
-            map.put("/module/dataintegrityworkflow/manageIntegrityRecords.form", "dataintegrityworkflow.manage.link");
+            map.put("/module/dataintegrityworkflow/viewChecks.form", "dataintegrityworkflow.manage.link");
         }
         if (Context.hasPrivilege(IntegrityWorkflowConstants.VIEW_RECORD_ASSIGNMENTS)) {
             map.put("/module/dataintegrityworkflow/viewAssignedRecords.form", "dataintegrityworkflow.view.link");

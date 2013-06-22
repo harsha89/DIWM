@@ -6,12 +6,10 @@
         <id column="record_stagechange_id" name="stageChangeId" type="int" unsaved-value="0">
             <generator class="native"/>
         </id>
-        <property name="recordAssigneeId" type="int">
-            <column name="record_assignee_id" not-null="true"/>
+        <property name="recordAssignmentId" type="int">
+            <column name="record_assignment_id" not-null="true"/>
         </property>
-        <property name="integrityWorkflowRecordId" type="int">
-            <column name="workflow_record_id" not-null="true"/>
-        </property>
+
         <many-to-one class="org.openmrs.User" column="creator" name="changeBy" not-null="true"/>
         <property column="date_created" length="19" name="changeDate" not-null="true" type="timestamp"/>
         <many-to-one name="fromWorkflowStage" class="WorkflowStage" column="from_workflow_stage_id"/>
