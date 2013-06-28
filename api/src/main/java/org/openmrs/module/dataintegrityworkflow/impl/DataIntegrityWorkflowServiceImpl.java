@@ -39,7 +39,7 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
     protected final Log log = LogFactory.getLog(getClass());
 
     /**
-     * @see org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService#setDataIntegrityDAO(org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO)
+     * @see org.openmrs.module.dataintegrityworkflow.DataIntegrityWorkflowService#setDataIntegrityWorkflowDAO(org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO)
      */
     public void setDataIntegrityWorkflowDAO(DataIntegrityWorkflowDAO dao) {
         this.dao = dao;
@@ -58,7 +58,7 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
     }
 
     public IntegrityCheck getIntegrityCheck(Integer checkId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Context.getService(DataIntegrityService.class).getIntegrityCheck(checkId);
     }
 
     public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
@@ -108,21 +108,30 @@ public class DataIntegrityWorkflowServiceImpl implements DataIntegrityWorkflowSe
     public List<IntegrityWorkflowRecordWithCheckResult> getAllIntegrityWorkflowRecordWithCheckResult(int checkId) {
         IntegrityCheck integrityCheck=Context.getService(DataIntegrityService.class).getIntegrityCheck(checkId);
         Set<IntegrityCheckResult> results=integrityCheck.getIntegrityCheckResults();
-        List<IntegrityWorkflowRecord> integrityWorkflowRecords=dao.getAllIntegrityWorkflowRecords();
+        List<IntegrityWorkflowRecord> integrityWorkflowRecords=dao.getAllIntegrityWorkflowRecordsForCheck(checkId);
         List<IntegrityWorkflowRecordWithCheckResult> integrityWorkflowRecordWithCheckResultList=new ArrayList<IntegrityWorkflowRecordWithCheckResult>();
         IntegrityWorkflowRecordWithCheckResult  integrityWorkflowRecordWithCheckResult;
         for(IntegrityCheckResult integrityCheckResult:results)
         {
+            boolean found=false;
+            integrityWorkflowRecordWithCheckResult=new IntegrityWorkflowRecordWithCheckResult();
+            if(integrityWorkflowRecords!=null){
             for(IntegrityWorkflowRecord integrityWorkflowRecord:integrityWorkflowRecords)
             {
                 if(integrityCheckResult.getIntegrityCheckResultId().equals(integrityWorkflowRecord.getIntegrityCheckResult().getIntegrityCheckResultId()))
                 {
-                    integrityWorkflowRecordWithCheckResult=new IntegrityWorkflowRecordWithCheckResult();
                     integrityWorkflowRecordWithCheckResult.setIntegrityCheckResult(integrityCheckResult);
                     integrityWorkflowRecordWithCheckResult.setIntegrityWorkflowRecord(integrityWorkflowRecord);
                     integrityWorkflowRecordWithCheckResultList.add(integrityWorkflowRecordWithCheckResult);
+                    found=true;
                     break;
                 }
+            }
+            }
+            if(!found)
+            {
+                integrityWorkflowRecordWithCheckResult.setIntegrityCheckResult(integrityCheckResult);
+                integrityWorkflowRecordWithCheckResultList.add(integrityWorkflowRecordWithCheckResult);
             }
         }
         return integrityWorkflowRecordWithCheckResultList;

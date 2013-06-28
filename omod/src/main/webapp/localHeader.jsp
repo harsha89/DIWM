@@ -1,3 +1,4 @@
+<%@ taglib prefix="fn" uri="/WEB-INF/taglibs/fn.tld" %>
 <ul id="menu">
 	<li class="first">
 		<a href="${pageContext.request.contextPath}/admin"><spring:message code="admin.title.short"/></a>

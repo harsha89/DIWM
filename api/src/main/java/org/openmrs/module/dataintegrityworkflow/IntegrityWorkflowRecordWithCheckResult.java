@@ -19,6 +19,7 @@ import org.openmrs.module.dataintegrity.IntegrityCheckResult;
  * @author: harsz89
  */
 public class IntegrityWorkflowRecordWithCheckResult {
+
     private IntegrityCheckResult integrityCheckResult;
     private IntegrityWorkflowRecord integrityWorkflowRecord;
 

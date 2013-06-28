@@ -13,7 +13,10 @@
  */
 package org.openmrs.module.dataintegrityworkflow.db.hibernate;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.openmrs.User;
 import org.openmrs.module.dataintegrityworkflow.*;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
@@ -67,8 +70,10 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecords() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(IntegrityWorkflowRecord.class);
+        criteria.add(Restrictions.eq("integrityCheckId",checkId));
+        return (List<IntegrityWorkflowRecord>) criteria.list();
     }
 
     public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser) {
