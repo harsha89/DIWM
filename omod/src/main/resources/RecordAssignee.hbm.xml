@@ -21,9 +21,7 @@
 
         <many-to-one name="integrityWorkflowRecord" class="IntegrityWorkflowRecord" column="workflow_record_id"/>
 
-        <property name="assigned" type="boolean">
-            <column name="is_assigned"/>
-        </property>
+        <many-to-one name="currentIntegrityRecordAssignment" class="IntegrityRecordAssignment" column="current_assignment_id"/>
 
     </class>
 </hibernate-mapping>

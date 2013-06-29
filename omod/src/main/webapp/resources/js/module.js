@@ -7,7 +7,7 @@ $j(document).ready(function() {
         "bProcessing": true,
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
-        "aaSorting": [[ 6, "desc" ]],
+        "aaSorting": [[ 7, "desc" ]],
         "aoColumns": [
             { "bSearchable": true,
                 "bVisible":    true },
@@ -20,6 +20,8 @@ $j(document).ready(function() {
             { "bSearchable": true,
                 "bVisible":    true },
             { "bSearchable": true,
+                "bVisible":    true },
+            { "bSearchable": false,
                 "bVisible":    true }
         ]
 
@@ -31,20 +33,25 @@ $j(document).ready(function() {
         this.innerHTML=renderStatus(this.innerHTML);
     });
 
+    $j("#removeOpt option:first").attr('selected','selected');
+    $j("#assignmentOpt option:first").attr('selected','selected');
+    $j("#selectUsr option:first").attr('selected','selected');
+
+    $j('#selectAllCheckBox').click(function() {
+        if(this.checked) {
+            // Iterate each checkbox
+            $j(':checkbox').each(function() {
+                this.checked = true;
+            });
+        }else {
+            $j(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+
 } );
 
-$j('#selectAll').click(function() {
-    if(this.checked) {
-        // Iterate each checkbox
-        $j(':checkbox').each(function() {
-            this.checked = true;
-        });
-    }else {
-        $j(':checkbox').each(function() {
-            this.checked = false;
-        });
-    }
-});
 
 function renderStatus(status) {
     if(status == "0") { return "New"; }
@@ -67,19 +74,48 @@ function showDiv(action)
 
 function checkForAssignAssignees()
 {
-    var selected = new Array();
-    $('#checkboxes input:checked').each(function() {
-        selected.push($(this).attr('name'));
+    var assigned;
+    if($j('#formContent input[type=checkbox]:checked').length>0)
+    {
+    $j('tr .checkboxRow:checked').each(function() {
+        assigned=$j(this).closest('tr').children("td:nth-child(4)").text();
+        if(assigned!="")
+        {
+         return confirmPopUpBox("Some selected records already assigned.Do you need to continue?")
+        }
     });
-
-    $j('#tableRecords tbody tr td:nth-child(2)').each(function() {
-        var a=$j(this).text();
-    });
+    } else {
+        alert("No records selected")
+        return false;
+    }
+    return true;
 }
 
 function checkForRemoveAssignees()
 {
-
+    var assigned;
+    if($j('#formContent input[type=checkbox]:checked').length>0)
+    {
+    $j('tr .checkboxRow:checked').each(function() {
+        assigned=$j(this).closest('tr').children("td:nth-child(3)").text();
+           if(assigned=="")
+           {
+               alert("Some records doesn't assign.Please select assigned records only");
+               return false;
+           }
+    });
+    } else {
+        alert("No records selected")
+        return false;
+    }
+    return true;
 }
+
+function confirmPopUpBox(msg)
+{
+    var conf = confirm(msg);
+    return conf;
+}
+
 
 

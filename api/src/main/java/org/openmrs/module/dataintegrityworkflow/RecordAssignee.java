@@ -27,8 +27,8 @@ public class RecordAssignee extends BaseOpenmrsObject {
     private Integer recordAssigneeId;
     private User assignee;
     private IntegrityWorkflowRecord integrityWorkflowRecord;
-    private boolean assigned;
     private List<IntegrityRecordAssignment> integrityRecordAssignmentList;
+    private IntegrityRecordAssignment currentIntegrityRecordAssignment;
 
     public Integer getId() {
         return this.getRecordAssigneeId();
@@ -62,19 +62,19 @@ public class RecordAssignee extends BaseOpenmrsObject {
         this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 
-    public boolean getAssigned() {
-        return assigned;
-    }
-
-    public void setAssigned(boolean assigned) {
-        this.assigned = assigned;
-    }
-
     public List<IntegrityRecordAssignment> getIntegrityRecordAssignmentList() {
         return integrityRecordAssignmentList;
     }
 
     public void setIntegrityRecordAssignmentList(List<IntegrityRecordAssignment> integrityRecordAssignmentList) {
         this.integrityRecordAssignmentList = integrityRecordAssignmentList;
+    }
+
+    public IntegrityRecordAssignment getCurrentIntegrityRecordAssignment() {
+        return currentIntegrityRecordAssignment;
+    }
+
+    public void setCurrentIntegrityRecordAssignment(IntegrityRecordAssignment currentIntegrityRecordAssignment) {
+        this.currentIntegrityRecordAssignment = currentIntegrityRecordAssignment;
     }
 }

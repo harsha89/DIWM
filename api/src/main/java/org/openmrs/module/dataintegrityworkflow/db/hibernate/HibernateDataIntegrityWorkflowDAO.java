@@ -18,6 +18,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.User;
+import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrityworkflow.*;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 
@@ -47,7 +48,7 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
     }
 
     public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sessionFactory.getCurrentSession().save(integrityWorkflowRecord);
     }
 
     public void saveWorkflowStage(WorkflowStage workflowStage) {
@@ -55,7 +56,7 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
     }
 
     public void saveWorkflowAssignee(RecordAssignee recordAssignee) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sessionFactory.getCurrentSession().save(recordAssignee);
     }
 
     public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange) {
@@ -66,8 +67,8 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordWorkflowDetailId) {
+        return (IntegrityWorkflowRecord) sessionFactory.getCurrentSession().get(IntegrityWorkflowRecord.class, integrityRecordWorkflowDetailId);
     }
 
     public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId) {
@@ -92,6 +93,16 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    public WorkflowStage getWorkflowStage(int stageId) {
+        return (WorkflowStage)sessionFactory.getCurrentSession().get(WorkflowStage.class,stageId);
+    }
+
+    public RecordAssignee getWorkflowRecordAssigneeByUserAndWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord, User assignUser) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(RecordAssignee.class);
+        criteria.add(Restrictions.eq("integrityWorkflowRecord",integrityWorkflowRecord)).add(Restrictions.eq("assignee",assignUser));
+        return (RecordAssignee) criteria.list().get(0);
+    }
+
     public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -110,6 +121,16 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
 
     public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByResult(IntegrityCheckResult integrityCheckResult) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(IntegrityWorkflowRecord.class);
+        criteria.add(Restrictions.eq("integrityCheckResult",integrityCheckResult));
+        List records=criteria.list();
+        if(records.size()>0) {
+           return (IntegrityWorkflowRecord) records.get(0);
+        }
+        return null;
     }
 
 }

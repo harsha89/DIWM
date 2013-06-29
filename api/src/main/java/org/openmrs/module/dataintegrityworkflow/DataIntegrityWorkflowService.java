@@ -15,6 +15,7 @@ package org.openmrs.module.dataintegrityworkflow;
 
 import org.openmrs.User;
 import org.openmrs.module.dataintegrity.IntegrityCheck;
+import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrity.db.DataIntegrityDAO;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,7 +56,9 @@ public interface DataIntegrityWorkflowService {
     public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId);
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordId);
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByResult(IntegrityCheckResult integrityCheckResult);
 
     public IntegrityWorkflowRecord getAllIntegrityWorkflowRecords();
 
@@ -66,6 +69,10 @@ public interface DataIntegrityWorkflowService {
     public List<RecordAssignee> getAllAssignmentsOfUser(User user);
 
     public RecordAssignee getCurrentAssignmentOfUser(User user);
+
+    public WorkflowStage getWorkflowStage(int stageId);
+
+    public RecordAssignee getWorkflowRecordAssigneeByUserAndWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord,User assignUser);
 
     public List<IntegrityWorkflowRecordWithCheckResult> getAllIntegrityWorkflowRecordWithCheckResult(int checkId);
 
@@ -79,4 +86,6 @@ public interface DataIntegrityWorkflowService {
 
 
     public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
+
+    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId);
 }

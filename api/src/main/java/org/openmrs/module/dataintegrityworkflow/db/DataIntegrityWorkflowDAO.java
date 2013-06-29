@@ -15,6 +15,7 @@ package org.openmrs.module.dataintegrityworkflow.db;
 
 import org.hibernate.SessionFactory;
 import org.openmrs.User;
+import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrityworkflow.*;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public interface DataIntegrityWorkflowDAO {
     public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityCheckResultId);
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordWorkflowDetailId);
 
     public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId);
 
@@ -60,6 +61,9 @@ public interface DataIntegrityWorkflowDAO {
 
     public RecordAssignee getCurrentAssignmentOfUser(User user);
 
+    public WorkflowStage getWorkflowStage(int stageId);
+
+    public RecordAssignee getWorkflowRecordAssigneeByUserAndWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord,User assignUser);
 
     public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId);
 
@@ -71,5 +75,7 @@ public interface DataIntegrityWorkflowDAO {
 
 
     public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByResult(IntegrityCheckResult integrityCheckResult);
 
 }

@@ -45,8 +45,8 @@
             <column name="assignee" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_assigned" type="boolean" />
             <column name="workflow_record_id" type="int" />
+            <column name="current_assignment_id" type="int" />
             <column name="uuid" type="varchar(38)"/>
         </createTable>
 
@@ -154,13 +154,13 @@
             <column name="status" value="Assigned"/>
         </insert>
         <insert tableName="workflow_record_stage">
-            <column name="status" value="Resolve"/>
+            <column name="status" value="Waiting for information"/>
+        </insert>
+        <insert tableName="workflow_record_stage">
+            <column name="status" value="Verified"/>
         </insert>
         <insert tableName="workflow_record_stage">
             <column name="status" value="On Progress"/>
-        </insert>
-        <insert tableName="workflow_record_stage">
-            <column name="status" value="Waiting for information"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
