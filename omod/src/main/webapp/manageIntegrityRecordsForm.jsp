@@ -34,19 +34,14 @@
                         <td><a href="<openmrs:contextPath/>/module/dataintegrityworkflow/viewRecord.form?recordId=<c:out value="${record.integrityCheckResult.integrityCheckResultId}"/>&checkId="${check.id}">RECORD-<c:out value="${record.integrityCheckResult.integrityCheckResultId}"/></a> </td>
                         <td class="status"><c:out value="${record.integrityCheckResult.status}"/></td>
                         <td>
-                            <c:out value="${record.integrityWorkflowRecord.currentAssignee}"/>
                             <c:if test="${not empty record.integrityWorkflowRecord.currentAssignee}">
+                            <c:out value="${record.integrityWorkflowRecord.currentAssignee}"/>
                                 <span><a href="#" onclick=""></a></span>
                             </c:if>
                         </td>
                         <td>
                             <c:if test="${not empty record.integrityWorkflowRecord.currentAssignee}">
-                                <c:forEach items="${record.integrityWorkflowRecord.currentAssignee.integrityRecordAssignmentList}" var="assignment" varStatus="loopStatus1">
-                                    <c:if test="${fn:length(record.integrityWorkflowRecord.currentAssignee.integrityRecordAssignmentList)==loopStatus1.count}">
-                                        <c:out value="${assignment.currentStage}"/>
-                                        <span id="changeStage"><a href="#" onclick=""/></span>
-                                    </c:if>
-                                </c:forEach>
+                                <c:out value="${record.integrityWorkflowRecord.currentAssignee.currentIntegrityRecordAssignment.currentStage}"/>
                             </c:if>
                         </td>
                         <td>
@@ -87,12 +82,9 @@
                         <spring:message code="dataintegrityworkflow.assign"/>
                     </td>
                     <td>
-
-                    </td>
-                    <td>
                         <select name="assignmentOptions" id="assignmentOpt">
-                            <option value="all">All</option>
                             <option value="selected">Selected</option>
+                            <option value="all">All</option>
                             <%-- <option value="allAndFuture">All and future</option>--%>
                         </select>
                     </td>

@@ -23,7 +23,7 @@ import java.util.Set;
  * @author: harsz89
  */
 public class IntegrityRecordAssignment extends BaseOpenmrsObject {
-    private int workflowAssigneeId;
+    private RecordAssignee recordAssignee;
     private int assignmentId;
     private User assignBy;
     private Date assignedDate;
@@ -33,20 +33,11 @@ public class IntegrityRecordAssignment extends BaseOpenmrsObject {
     private WorkflowStage currentStage;
 
     public Integer getId() {
-        return this.getWorkflowAssigneeId();
+        return this.assignmentId;
     }
 
     public void setId(Integer id) {
-        this.setWorkflowAssigneeId(id);
-    }
-
-
-    public int getWorkflowAssigneeId() {
-        return workflowAssigneeId;
-    }
-
-    public void setWorkflowAssigneeId(int workflowAssigneeId) {
-        this.workflowAssigneeId = workflowAssigneeId;
+        this.assignmentId=id;
     }
 
     public int getAssignmentId() {
@@ -103,5 +94,13 @@ public class IntegrityRecordAssignment extends BaseOpenmrsObject {
 
     public void setCurrentStage(WorkflowStage currentStage) {
         this.currentStage = currentStage;
+    }
+
+    public RecordAssignee getRecordAssignee() {
+        return recordAssignee;
+    }
+
+    public void setRecordAssignee(RecordAssignee recordAssignee) {
+        this.recordAssignee = recordAssignee;
     }
 }

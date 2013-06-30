@@ -3,13 +3,12 @@
 <hibernate-mapping package="org.openmrs.module.dataintegrityworkflow">
     <class name="org.openmrs.module.dataintegrityworkflow.IntegrityRecordComment" table="workflow_record_comment">
 
-        <id column="record_comment_id" name="integrityRecordCommentId" type="int" unsaved-value="0">
+        <id name="integrityRecordCommentId" type="java.lang.Integer">
+            <column name="record_comment_id"/>
             <generator class="native"/>
         </id>
 
-        <property name="integrityWorkflowRecordId" type="int">
-            <column name="workflow_record_id" not-null="true"/>
-        </property>
+        <many-to-one name="integrityWorkflowRecord" class="IntegrityWorkflowRecord" column="workflow_record_id"/>
 
         <property name="comment" type="string">
             <column length="5000" name="comment"/>

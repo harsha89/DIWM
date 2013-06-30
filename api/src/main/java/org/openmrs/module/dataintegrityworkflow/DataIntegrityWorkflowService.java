@@ -16,7 +16,6 @@ package org.openmrs.module.dataintegrityworkflow;
 import org.openmrs.User;
 import org.openmrs.module.dataintegrity.IntegrityCheck;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
-import org.openmrs.module.dataintegrity.db.DataIntegrityDAO;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,12 +48,13 @@ public interface DataIntegrityWorkflowService {
 
     public void saveWorkflowStage(WorkflowStage workflowStage);
 
-    public void saveWorkflowAssignee(RecordAssignee recordAssignee);
+    public int saveWorkflowAssignee(RecordAssignee recordAssignee);
 
     public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange);
 
     public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
+    public RecordAssignee getRecordAssigneeById(int assigneeId);
 
     public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordId);
 
@@ -88,4 +88,17 @@ public interface DataIntegrityWorkflowService {
     public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
 
     public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId);
+
+    public void assignRecords(String[] recordList,int checkId,String user);
+
+    public void removeRecords(String[] recordList,int checkId);
+
+    public int saveIntegrityRecordAssignment(IntegrityRecordAssignment integrityRecordAssignment);
+
+
+    public void createWorkflowRecordsIfNotExists(String[] recordIdList,int checkId);
+
+    public IntegrityRecordAssignment getIntegrityRecordAssignmentByAssignee(RecordAssignee recordAssignee);
+
+
 }

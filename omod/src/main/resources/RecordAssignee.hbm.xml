@@ -12,9 +12,9 @@
             <column length="38" name="uuid"/>
         </property>
 
-        <set name="integrityRecordAssignmentList" lazy="true" cascade="all-delete-orphan"
+        <set name="integrityRecordAssignmentList" lazy="false" cascade="all-delete-orphan"
              table="workflow_record_assignment" inverse="true" sort="unsorted"
-             order-by="date_created asc">
+            >
             <key column="workflow_record_assignee_id" not-null="true"/>
             <one-to-many class="IntegrityRecordAssignment"/>
         </set>

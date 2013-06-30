@@ -15,6 +15,7 @@ package org.openmrs.module.dataintegrityworkflow.db;
 
 import org.hibernate.SessionFactory;
 import org.openmrs.User;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrityworkflow.*;
 
@@ -38,44 +39,48 @@ public interface DataIntegrityWorkflowDAO {
      */
     public SessionFactory getSessionFactory();
 
-    public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord);
+    public void saveIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) throws DAOException;
 
-    public void saveWorkflowStage(WorkflowStage workflowStage);
+    public void saveWorkflowStage(WorkflowStage workflowStage) throws DAOException;
 
-    public void saveWorkflowAssignee(RecordAssignee recordAssignee);
+    public int saveWorkflowAssignee(RecordAssignee recordAssignee) throws DAOException;
 
-    public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange);
+    public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange) throws DAOException;
 
-    public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
+    public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) throws DAOException;
+
+    public RecordAssignee getRecordAssigneeById(int assigneeId);
+
+    public IntegrityRecordAssignment getIntegrityRecordAssignmentByAssignee(RecordAssignee recordAssignee);
+
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordWorkflowDetailId) throws DAOException;
+
+    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId) throws DAOException;
+
+    public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser) throws DAOException;
+
+    public List<IntegrityWorkflowRecord> getAllAssignedIntegrityWorkflowRecordsOfCurrentUser(User assigneduser) throws DAOException;
+
+    public List<RecordAssignee> getAllAssignmentsOfUser(User user) throws DAOException;
+
+    public RecordAssignee getCurrentAssignmentOfUser(User user) throws DAOException;
+
+    public WorkflowStage getWorkflowStage(int stageId) throws DAOException;
+
+    public RecordAssignee getWorkflowRecordAssigneeByUserAndWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord,User assignUser) throws DAOException;
+
+    public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId) throws DAOException;
+
+    public void updateIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) throws DAOException;
+
+    public void updateIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) throws DAOException;
+
+    public void updateWorkflowAssignee(RecordAssignee recordAssignee) throws DAOException;
 
 
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordWorkflowDetailId);
+    public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) throws DAOException;
 
-    public List<IntegrityWorkflowRecord> getAllIntegrityWorkflowRecordsForCheck(int checkId);
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByResult(IntegrityCheckResult integrityCheckResult) throws DAOException;
 
-    public List<IntegrityWorkflowRecord> getAssignedIntegrityWorkflowRecordsOfCurrentUser(User assignedUser);
-
-    public List<IntegrityWorkflowRecord> getAllAssignedIntegrityWorkflowRecordsOfCurrentUser(User assigneduser);
-
-    public List<RecordAssignee> getAllAssignmentsOfUser(User user);
-
-    public RecordAssignee getCurrentAssignmentOfUser(User user);
-
-    public WorkflowStage getWorkflowStage(int stageId);
-
-    public RecordAssignee getWorkflowRecordAssigneeByUserAndWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord,User assignUser);
-
-    public List<IntegrityRecordComment> getIntegrityRecordComments(int integrityWorkflowRecordId);
-
-    public void updateIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
-
-    public void updateIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord);
-
-    public void updateWorkflowAssignee(RecordAssignee recordAssignee);
-
-
-    public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment);
-
-    public IntegrityWorkflowRecord getIntegrityWorkflowRecordByResult(IntegrityCheckResult integrityCheckResult);
-
+    public int saveIntegrityRecordAssignment(IntegrityRecordAssignment integrityRecordAssignment)throws DAOException;
 }

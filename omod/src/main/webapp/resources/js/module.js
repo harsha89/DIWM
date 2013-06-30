@@ -79,6 +79,7 @@ function checkForAssignAssignees()
     {
     $j('tr .checkboxRow:checked').each(function() {
         assigned=$j(this).closest('tr').children("td:nth-child(4)").text();
+        assigned=assigned.trim();
         if(assigned!="")
         {
          return confirmPopUpBox("Some selected records already assigned.Do you need to continue?")
@@ -97,7 +98,8 @@ function checkForRemoveAssignees()
     if($j('#formContent input[type=checkbox]:checked').length>0)
     {
     $j('tr .checkboxRow:checked').each(function() {
-        assigned=$j(this).closest('tr').children("td:nth-child(3)").text();
+        assigned=$j(this).closest('tr').children("td:nth-child(4)").text();
+        assigned=assigned.trim();
            if(assigned=="")
            {
                alert("Some records doesn't assign.Please select assigned records only");

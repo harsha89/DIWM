@@ -13,9 +13,9 @@
  */
 package org.openmrs.module.dataintegrityworkflow;
 
-import org.openmrs.BaseOpenmrsData;
+
 import org.openmrs.BaseOpenmrsMetadata;
-import org.openmrs.module.dataintegrity.IntegrityCheckResult;
+
 
 /**
  * @author: harsz89
@@ -23,7 +23,7 @@ import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 public class IntegrityRecordComment extends BaseOpenmrsMetadata{
 
     private Integer integrityRecordCommentId;
-    private int integrityWorkflowRecordId;
+    private IntegrityWorkflowRecord integrityWorkflowRecord;
     private String comment;
 
     public Integer getId() {
@@ -50,11 +50,11 @@ public class IntegrityRecordComment extends BaseOpenmrsMetadata{
         this.integrityRecordCommentId = integrityRecordCommentId;
     }
 
-    public int getIntegrityWorkflowRecordId() {
-        return integrityWorkflowRecordId;
+    public IntegrityWorkflowRecord getIntegrityWorkflowRecord() {
+        return integrityWorkflowRecord;
     }
 
-    public void setIntegrityWorkflowRecordId(int integrityWorkflowRecordId) {
-        this.integrityWorkflowRecordId = integrityWorkflowRecordId;
+    public void setIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
+        this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 }

@@ -24,7 +24,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="current_assignee_id" type="int">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="integrity_check_id" type="int">
                 <constraints nullable="true"/>
@@ -84,6 +84,9 @@
             </column>
             <column name="retired_by" type="int">
                 <constraints nullable="true"/>
+            </column>
+            <column name="retired" type="tinyint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
             </column>
             <column name="date_created" type="datetime" />
             <column name="date_changed" type="datetime" />

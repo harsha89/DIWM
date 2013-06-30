@@ -2,13 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.dataintegrityworkflow">
     <class name="IntegrityRecordStageChange" table="workflow_record_stagechange">
-
-        <id column="record_stagechange_id" name="stageChangeId" type="int" unsaved-value="0">
+        <id name="stageChangeId" type="java.lang.Integer">
+            <column name="record_stagechange_id"/>
             <generator class="native"/>
         </id>
-        <property name="recordAssignmentId" type="int">
-            <column name="record_assignment_id" not-null="true"/>
-        </property>
+
+        <many-to-one name="integrityRecordAssignment" class="IntegrityWorkflowRecord" column="record_assignment_id"/>
 
         <many-to-one class="org.openmrs.User" column="creator" name="changeBy" not-null="true"/>
         <property column="date_created" length="19" name="changeDate" not-null="true" type="timestamp"/>

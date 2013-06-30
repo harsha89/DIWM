@@ -19,6 +19,7 @@ import org.openmrs.module.dataintegrity.IntegrityCheckColumn;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -30,7 +31,6 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     private Set<RecordAssignee> previousRecordAssignees;
     private Set<IntegrityRecordComment> integrityRecordComments;
     private IntegrityCheckResult integrityCheckResult;
-    private Set<IntegrityCheckColumn> integrityCheckColumns;
     private int integrityCheckId;
     private Date lastUpdated;
 
@@ -60,6 +60,9 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     }
 
     public Set<RecordAssignee> getPreviousRecordAssignees() {
+        if (previousRecordAssignees == null) {
+            previousRecordAssignees = new LinkedHashSet<RecordAssignee>();
+        }
         return previousRecordAssignees;
     }
 
@@ -68,6 +71,9 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
     }
 
     public Set<IntegrityRecordComment> getIntegrityRecordComments() {
+        if (integrityRecordComments == null) {
+            integrityRecordComments = new LinkedHashSet<IntegrityRecordComment>();
+        }
         return integrityRecordComments;
     }
 
@@ -81,14 +87,6 @@ public class IntegrityWorkflowRecord extends BaseOpenmrsObject{
 
     public void setIntegrityCheckResult(IntegrityCheckResult integrityCheckResult) {
         this.integrityCheckResult = integrityCheckResult;
-    }
-
-    public Set<IntegrityCheckColumn> getIntegrityCheckColumns() {
-        return integrityCheckColumns;
-    }
-
-    public void setIntegrityCheckColumns(Set<IntegrityCheckColumn> integrityCheckColumns) {
-        this.integrityCheckColumns = integrityCheckColumns;
     }
 
     public int getIntegrityCheckId() {

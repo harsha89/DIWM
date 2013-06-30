@@ -18,6 +18,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.User;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dataintegrity.IntegrityCheckResult;
 import org.openmrs.module.dataintegrityworkflow.*;
 import org.openmrs.module.dataintegrityworkflow.db.DataIntegrityWorkflowDAO;
@@ -52,11 +53,11 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
     }
 
     public void saveWorkflowStage(WorkflowStage workflowStage) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sessionFactory.getCurrentSession().save(workflowStage);
     }
 
-    public void saveWorkflowAssignee(RecordAssignee recordAssignee) {
-        sessionFactory.getCurrentSession().save(recordAssignee);
+    public int  saveWorkflowAssignee(RecordAssignee recordAssignee) {
+        return  (Integer)sessionFactory.getCurrentSession().save(recordAssignee);
     }
 
     public void saveIntegrityRecordStageChange(IntegrityRecordStageChange integrityRecordStageChange) {
@@ -65,6 +66,18 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
 
     public void saveIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public RecordAssignee getRecordAssigneeById(int assigneeId) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(RecordAssignee.class);
+        criteria.add(Restrictions.eq("recordAssigneeId",assigneeId));
+        return (RecordAssignee) criteria.uniqueResult();
+    }
+
+    public IntegrityRecordAssignment getIntegrityRecordAssignmentByAssignee(RecordAssignee recordAssignee) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(IntegrityRecordAssignment.class);
+        criteria.add(Restrictions.eq("recordAssignee",recordAssignee));
+        return (IntegrityRecordAssignment) criteria.uniqueResult();
     }
 
     public IntegrityWorkflowRecord getIntegrityWorkflowRecord(int integrityRecordWorkflowDetailId) {
@@ -112,11 +125,11 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
     }
 
     public void updateIntegrityWorkflowRecord(IntegrityWorkflowRecord integrityWorkflowRecord) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sessionFactory.getCurrentSession().update(integrityWorkflowRecord);
     }
 
     public void updateWorkflowAssignee(RecordAssignee recordAssignee) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sessionFactory.getCurrentSession().update(recordAssignee);
     }
 
     public void deleteIntegrityRecordComment(IntegrityRecordComment integrityRecordComment) {
@@ -131,6 +144,10 @@ public class HibernateDataIntegrityWorkflowDAO implements DataIntegrityWorkflowD
            return (IntegrityWorkflowRecord) records.get(0);
         }
         return null;
+    }
+
+    public int saveIntegrityRecordAssignment(IntegrityRecordAssignment integrityRecordAssignment) throws DAOException {
+        return (Integer)sessionFactory.getCurrentSession().save(integrityRecordAssignment);
     }
 
 }

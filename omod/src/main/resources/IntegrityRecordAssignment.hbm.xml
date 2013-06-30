@@ -19,15 +19,15 @@
             <column length="38" name="uuid"/>
         </property>
 
-        <set name="integrityRecordStageChanges" lazy="true" cascade="all-delete-orphan"
+        <set name="integrityRecordStageChanges" lazy="false" cascade="all-delete-orphan"
              table="workflow_record_stagechange" inverse="true" sort="unsorted"
-             order-by="date_created asc">
+            >
             <key column="record_assignment_id" not-null="true"/>
             <one-to-many class="IntegrityRecordStageChange"/>
         </set>
 
         <many-to-one name="currentStage" class="WorkflowStage" column="current_stage_id"/>
-        <many-to-one name="workflowAssigneeId" class="RecordAssignee" column="workflow_record_assignee_id"/>
+        <many-to-one name="recordAssignee" class="RecordAssignee" column="workflow_record_assignee_id"/>
 
     </class>
 </hibernate-mapping>

@@ -16,8 +16,7 @@ package org.openmrs.module.dataintegrityworkflow;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.User;
 
-import java.util.Date;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -27,7 +26,7 @@ public class RecordAssignee extends BaseOpenmrsObject {
     private Integer recordAssigneeId;
     private User assignee;
     private IntegrityWorkflowRecord integrityWorkflowRecord;
-    private List<IntegrityRecordAssignment> integrityRecordAssignmentList;
+    private Set<IntegrityRecordAssignment> integrityRecordAssignmentList;
     private IntegrityRecordAssignment currentIntegrityRecordAssignment;
 
     public Integer getId() {
@@ -62,11 +61,14 @@ public class RecordAssignee extends BaseOpenmrsObject {
         this.integrityWorkflowRecord = integrityWorkflowRecord;
     }
 
-    public List<IntegrityRecordAssignment> getIntegrityRecordAssignmentList() {
+    public Set<IntegrityRecordAssignment> getIntegrityRecordAssignmentList() {
+        if(integrityRecordAssignmentList==null) {
+            integrityRecordAssignmentList=new LinkedHashSet<IntegrityRecordAssignment>();
+        }
         return integrityRecordAssignmentList;
     }
 
-    public void setIntegrityRecordAssignmentList(List<IntegrityRecordAssignment> integrityRecordAssignmentList) {
+    public void setIntegrityRecordAssignmentList(Set<IntegrityRecordAssignment> integrityRecordAssignmentList) {
         this.integrityRecordAssignmentList = integrityRecordAssignmentList;
     }
 
